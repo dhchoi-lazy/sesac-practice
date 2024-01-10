@@ -1,7 +1,5 @@
 import re
 
-# message for pull request
-
 
 def calculate_medal(medal_dict: dict, country: str, medal: str) -> dict:
     """
@@ -54,4 +52,4 @@ medal_data = [
 medal_dict = display_progress(medal_data)
 sentences = print_medals(medal_dict)
 print(sentences)
-print("메달 획득 국가: ", ", ".join(re.findall(r"[가-힣]{2,}(?=은)", sentences)))
+print("메달 획득 국가: ", ", ".join(re.findall(r"\d+(?=은)", sentences)))
