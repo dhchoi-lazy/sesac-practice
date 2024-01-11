@@ -11,9 +11,16 @@ def calculate_medal(medal_dict: dict, country: str, medal: str) -> dict:
     if country not in medal_dict:
         medal_dict[country] = {"금메달": 0, "은메달": 0, "동메달": 0}
 
+    # 이 부분을 채워 보세요.
+    # 메달을 집계하는 코드가 빠져 있습니다.
+    # Your code here.
     medal_dict[country][medal] += 1
 
     return medal_dict
+
+
+# 테스트
+assert calculate_medal({}, "한국", "금메달") == {"한국": {"금메달": 1, "은메달": 0, "동메달": 0}}
 
 
 def display_progress(medal_data):
@@ -23,7 +30,7 @@ def display_progress(medal_data):
     return: country를 키로 하고 medal 집계 결과를 값으로 하는 사전
     """
     medal_dict = {}
-    total = len(medal_data)
+    total = len(medal_data)  # 4
 
     for index, (country, medal) in enumerate(medal_data, start=1):
         medal_dict = calculate_medal(medal_dict, country, medal)
@@ -46,7 +53,7 @@ medal_data = [
     ("미국", "금메달"),
     ("중국", "은메달"),
     ("한국", "동메달"),
-    ("호주", "금메달"),
+    ("에스토니아", "금메달"),
 ]
 
 
