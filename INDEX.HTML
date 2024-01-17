@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beautiful Page with Navigation</title>
+    <title>Chat Interface</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,72 +11,98 @@
             padding: 0;
             background-color: #f3f3f3;
         }
-        header {
-            background-color: #0898f2;
+        .header {
+            background-color: #4CAF50;
             color: white;
-            padding: 1em 0;
-        }
-        .logo {
-            float: left;
-            padding-left: 20px;
-        }
-        .nav-bar {
             text-align: center;
-            padding-top: 10px;
+            padding: 10px 0;
         }
-        .nav-bar a {
-            margin: 0 10px;
+        .chat-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 30px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .chat-box {
+            background-color: white;
+            height: 500px;
+            overflow-y: auto;
+            padding: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+        .chat-input {
+            padding: 20px;
+            background-color: #fff;
+        }
+        .chat-input input[type="text"] {
+            width: calc(100% - 90px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+        .chat-input button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
             color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .search-container {
-            float: right;
-            padding-right: 20px;
-        }
-        .search-container input[type=text] {
-            padding: 5px;
-            margin-top: 8px;
-            font-size: 17px;
             border: none;
-        }
-        .search-container button {
-            float: right;
-            padding: 5px 10px;
-            margin-top: 8px;
-            margin-right: 16px;
-            background: #ddd;
-            font-size: 17px;
-            border: none;
+            font-size: 16px;
             cursor: pointer;
         }
-        .search-container button:hover {
-            background: #ccc;
+        .chat-input button:hover {
+            background-color: #45a049;
         }
-        .container {
-            clear: both;
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
+        .chat-message {
+            margin-bottom: 20px;
         }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        .user-message {
+            text-align: right;
+        }
+        .chat-message p {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 70%;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <h2>Minjun</h2>
+    <div class="header">
+        <h1>Chat Interface</h1>
+    </div>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <!-- Chat messages will appear here -->
         </div>
-        <div class="nav-bar">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-      
+        <div class="chat-input">
+            <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var input = document.getElementById("chat-input");
+            var message = input.value.trim();
+            if (message !== '') {
+                var chatBox = document.getElementById("chat-box");
+                var newMessage = document.createElement("p");
+                newMessage.innerHTML = message;
+                newMessage.classList.add("chat-message", "user-message");
+                chatBox.appendChild(newMessage);
+                input.value = ""; // Clear the input field after sending a message
+                chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+            }
+        }
+
+        function handleKeyPress(event) {
+            // Check if the Enter key is pressed
+            if (event.keyCode === 13) {
+                event.preventDefault(); // Prevent the form from being submitted
+                sendMessage();
+            }
+        }
+    </script>
+</body>
+</html>

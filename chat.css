@@ -1,0 +1,8 @@
+function handleKeyPress(event) {
+    // Check if the key pressed is the Enter key
+    if (event.keyCode === 13) {
+        event.preventDefault(); // Prevent the default action (form submission)
+        sendMessage();
+    }
+}
+</script>
